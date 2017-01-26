@@ -79,3 +79,61 @@ describe("Test /searchPizza", function() {
 
 });
 
+describe("Test /deletePizza", function() {
+    
+    var data = {ID: '1'};
+    it("to return status code 200 when deleting pizza 1", function(done) {
+        client.post(base_url + "deletePizza/", data, function(err, res, body) {
+            expect(res.statusCode).toBe(200);
+            expect(body).toEqual(
+                {
+		            ID: 1,
+		            name: "Margherita", 
+		            price: 9.5,
+		            ingriedentsList: ["pomodoro","mozzarella", "basilico", "olio"]
+	            }
+            );
+            done();
+        });
+    });
+    
+    var data1 = {name: 'Funghi'};
+    it("to return status code 200 when deleting pizza Funghi", function(done) {
+        client.post(base_url + "deletePizza/", data1, function(err, res, body) {
+            expect(res.statusCode).toBe(200);
+            expect(body).toEqual(
+                {
+		            ID: 3,
+		            name: "Funghi", 
+		            price: 17.5,
+		            ingriedentsList: ["pomodoro","mozzarella", "funghi champignon", "prezzemolo", "olio"]
+	            }
+            );
+            done();
+        });
+    });
+    
+    it("to return status code 404 when deleting pizza 1", function(done) {
+        client.post(base_url + "deletePizza/", data, function(err, res, body) {
+            expect(res.statusCode).toBe(404);
+            done();
+        });
+    });
+    
+    it("to return status code 404 when deleting pizza Funghi", function(done) {
+        client.post(base_url + "deletePizza/", data1, function(err, res, body) {
+            expect(res.statusCode).toBe(404);
+            done();
+        });
+    });
+    
+    var data2 = {asdf: 'asdf'};
+    it("to returns status code 406", function(done) {
+	  client.post(base_url + "deletePizza/", data2, function(err, res, body) {
+		expect(res.statusCode).toBe(406);
+		expect(body).toBe(1);
+		done();
+	  });
+	});
+});
+
