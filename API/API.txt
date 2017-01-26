@@ -19,6 +19,10 @@ paths:
       responses:
         200:
           description: web page with the menu
+          schema: 
+            type: array
+            items:
+              $ref: "#/definitions/pizza"
           
   /searchPizza:
     post:
@@ -42,12 +46,14 @@ paths:
               error:
                 type: integer
         404:
-          description: no pizza with that ID or name
+          description: no pizza with that ID
+          schema: 
+              $ref: "#/definitions/pizza"
           
   /deletePizza:
     post:
-      summary: delete a pizza
-      description: it returns a pizza, given its ID or name
+      summary: deletes a pizza
+      description: it deletes a pizza, returning its object, given its ID or name; if both parameters are specified, the ID is used
       parameters:
         - name: ID
           in: formData
@@ -113,9 +119,9 @@ definitions:
       price:
         type: integer
         description: price of the pizza
-      ingridients:
+      ingriedentsList:
         type: array
         items: 
           type: string
-        description: array.
+        description: list of the ingriedents of the pizza.
         
