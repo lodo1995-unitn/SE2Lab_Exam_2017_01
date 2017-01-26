@@ -1,0 +1,25 @@
+{
+  "name": "se2lab_exam_2017_01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lodo1995-unitn/SE2Lab_Exam_2017_01.git"
+  },
+  "author": "Lodovico Giaretta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lodo1995-unitn/SE2Lab_Exam_2017_01/issues"
+  },
+  "homepage": "https://github.com/lodo1995-unitn/SE2Lab_Exam_2017_01#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cors": "^2.8.1",
+    "express": "^4.14.0"
+  }
+}

@@ -264,6 +264,46 @@ app.post('/addPizza', function(request, response)
 
 //INSERIRE CODICE QUI SOTTO
 
+app.post('/updatePizzasByPrice', function (request, response)
+{
+	var headers = {};
+	headers["Access-Control-Allow-Origin"] = "*";
+	headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
+	headers["Access-Control-Allow-Credentials"] = false;
+	headers["Access-Control-Max-Age"] = '86400'; // 24 hours
+	headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
+	headers["Content-Type"] = "application/json";
+	
+	var price = "not defined";
+	var increment;
+	var lower;
+	
+	if ( typeof request.body !== 'undefined' && request.body)
+	{
+		if ( typeof request.body.price !== 'undefined' && request.body.price &&
+			 typeof request.body.increment !== 'undefined' && request.body.increment &&
+			 typeof request.body.lower !== 'undefined' && request.body.lower
+		   )
+            {
+			 price = parseFloat(request.body.price);
+			 increment = parseFloat(request.body.increment);
+			 lower = request.body.lower;
+            }
+	}
+	
+	if (price != "not defined")
+	{
+	    result = pizzaManager.updatePizzasByPrice(price, increment, lower);
+	    response.writeHead(200, headers);
+	    response.end(JSON.stringify(result));
+	}
+	else
+	{
+	    response.writeHead(400, headers);
+	    response.end(JSON.stringify());
+	}
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
