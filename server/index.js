@@ -287,7 +287,7 @@ app.post('/updatePizzasByPrice', function (request, response)
             {
 			 price = parseFloat(request.body.price);
 			 increment = parseFloat(request.body.increment);
-			 lower = request.body.lower;
+			 lower = request.body.lower != "false";
             }
 	}
 	
